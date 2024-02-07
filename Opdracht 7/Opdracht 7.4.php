@@ -1,4 +1,7 @@
-<H1>Opdracht 7.4</H1>
+<!-- 
+    Opdracht 7.4 
+    Author = Dylan van Schouwen 
+-->
 <form action="" method="post">
     <label for="getal1">Prijs</label>
     <input type="number" name="getal1" placeholder="Vul een getal in..." required>
