@@ -1,70 +1,38 @@
 <?php
-//Auteur: Dylan van Schouwen
-//Functie: Toevoegen van 1 fiets
-    // Test of toevoeg knop is gedrukt
-    if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Maak variabelen aan voor alle velden
-        Echo "er is gepost";
-        print_r($_POST);
-    }
-    //connect database
-    include "connect.php";
+//Author: Dylan van schouwen
+// File name: insert.php
+//Functie: insert data into the database
+include "connect.php";
 
-    //maak een query 
-    $sql = "INSERT INTO fietsen (merk, type, prijs, foto) 
-            VALUES (:merk, :type, :prijs, :foto)";
-    //prepare query
+if(isset($_POST['save'])) {
+    $merk = $_POST['merk'];
+    $type = $_POST['type'];
+    $prijs = $_POST['prijs'];
+
+    $sql = "INSERT INTO fietsen(merk, type, prijs) VALUES (:merk, :type, :prijs)";
     $query = $conn->prepare($sql);
-    //uitvoeren
-    $query->execute(
-        [
-            'merk' => $_POST['merk'],
-            'type' => $_POST['type'],
-            'prijs' => $_POST['prijs'],
-            'foto' => $_POST['foto']
-        ]
+    $query->bindParam(":merk", $merk);
+    $query->bindParam(":type", $type);
+    $query->bindParam(":prijs", $prijs);
 
-    );
-
-    //test of insert gelukt is
-    if ($query) {
-        echo "insert gelukt";
+    if($query->execute()) {
+        header("Location: Crud.php"); 
+        exit(); 
     } else {
-        echo "insert mislukt";
+        echo "Er is een fout opgetreden: " . $query->errorInfo()[2];
     }
-    
+}
+?>
 
-    //ga naar home-page
+<form method="post" action="">
+    <label>Merk: </label>
+    <input type="text" name="merk"><br>
 
-    ?>
+    <label>Type: </label>
+    <input type="text" name="type"><br>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>insert php</title>
-    </head>
-    <body>
-        <h2> voeg fiets toe </h2>
-        <form action="" method="post">
-                   <!-- Merk -->
-        <label for="merk">Merk:</label>
-        <input type="text" name="merk" required maxlength="255">
-        <br>
+    <label>Prijs: </label>
+    <input type="text" name="prijs"><br>
 
-        <!-- Type -->
-        <label for="type">Type:</label>
-        <input type="text" name="type" required maxlength="255">
-        <br>
-
-        <!-- Prijs -->
-        <label for="prijs">Prijs:</label>
-        <input type="number" name="prijs" required min="0" max="99999">
-        <br>
-
-        <!-- Verzendknop -->
-        <input type="submit" value="Voeg toe aan database">    
-
-    </body>
-    </html>
+    <input type="submit" name="save">
+</form>
