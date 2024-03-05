@@ -170,24 +170,23 @@ function updateBrouwer($row){
     $conn = connectDb();
 
     // Maak een query 
-    $sql = "UPDATE " . CRUD_TABLE .
-    " SET 
-        merk = :merk, 
-        type = :type, 
-        prijs = :prijs
-    WHERE brouwcode = :brouwcode
+    $sql = "UPDATE " . CRUD_TABLE . 
+    " SET
+        naam = :naam,
+        land = :land
+    WHERE 
+        brouwcode = :brouwcode
     ";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$row['merk'],
-        ':type'=>$row['type'],
-        ':prijs'=>$row['prijs'],
-        ':brouwcode'=>$row['brouwcode']
+        ':naam'=>$row['naam'],
+        ':land'=>$row['land'],
+        ':brouwcode'=>$row['brouwcode']  // Add this line
     ]);
-
+    
     // test of database actie is gelukt
     $retVal = ($stmt->rowCount() == 1) ? true : false ;
     return $retVal;
@@ -199,17 +198,16 @@ function insertBrouwer($post){
 
     // Maak een query 
     $sql = "
-        INSERT INTO " . CRUD_TABLE . " (merk, type, prijs)
-        VALUES (:merk, :type, :prijs) 
+        INSERT INTO " . CRUD_TABLE . " (naam, land)
+        VALUES (:naam, :land) 
     ";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$_POST['merk'],
-        ':type'=>$_POST['type'],
-        ':prijs'=>$_POST['prijs']
+        ':naam'=>$_POST['naam'],
+        ':land'=>$_POST['land']
     ]);
 
     

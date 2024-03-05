@@ -34,16 +34,12 @@
 <body>
   <h2>Wijzig Brouwer</h2>
   <form method="post">
-    
-    <input type="hidden" id="merk" name="id" required value="<?php echo $row['brouwcode']; ?>"><br>
-    <label for="merk">Merk:</label>
-    <input type="text" id="merk" name="merk" required value="<?php echo $row['merk']; ?>"><br>
+    <input type="hidden" id="brouwcode" name="brouwcode" value="<?php echo $row['brouwcode']; ?>">
+    <label for="naam">Naam:</label>
+    <input type="text" id="naam" name="naam" required value="<?php echo $row['naam']; ?>"><br>
 
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type" required value="<?php echo $row['type']; ?>"><br>
-
-    <label for="prijs">Prijs:</label>
-    <input type="number" id="prijs" name="prijs" required value="<?php echo $row['prijs']; ?>"><br>
+    <label for="land">Land:</label>
+    <input type="text" id="land" name="land" required value="<?php echo $row['land']; ?>"><br>
 
     <input type="submit" name="btn_wzg" value="Wijzig">
   </form>
