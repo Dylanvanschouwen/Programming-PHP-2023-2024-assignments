@@ -1,7 +1,8 @@
 label{
     display: inline-block;
     background-color:#00ffff;
-    width: 10%;
+    width: auto;
+    padding: 2px;
 }
 
 table, th, td {
