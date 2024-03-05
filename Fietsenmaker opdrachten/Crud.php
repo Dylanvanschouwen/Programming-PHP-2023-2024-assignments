@@ -1,7 +1,7 @@
 <?php
 //Author: Dylan van Schouwen
-// File name: Crud.php
-//Functie: CRUD fietsen
+//File name: Index.php
+//Functie: CRUD fietsen pagina
 include "connect.php";
 ?>
 

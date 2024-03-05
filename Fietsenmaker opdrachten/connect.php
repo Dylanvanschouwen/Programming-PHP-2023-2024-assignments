@@ -1,6 +1,7 @@
 <?php
 //Author: Dylan van Schouwen
-//Database connection
+//File name: connect.php
+//Function: Connect to Database connection
 
 $servername = "localhost";
 $username = "root";

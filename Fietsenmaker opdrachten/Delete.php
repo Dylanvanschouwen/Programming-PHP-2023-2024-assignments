@@ -1,6 +1,6 @@
 <?php
 //Author: Dylan van Schouwen
-// File name: Delete.php
+//File name: Delete.php
 //Functie: Delete data from the database
 include 'connect.php';
 echo "<br>";

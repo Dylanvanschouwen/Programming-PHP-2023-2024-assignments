@@ -1,6 +1,6 @@
 <?php
 //Author: Dylan van schouwen
-// File name: insert.php
+//File name: insert.php
 //Functie: insert data into the database
 include "connect.php";
 

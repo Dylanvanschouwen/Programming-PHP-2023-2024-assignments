@@ -1,7 +1,7 @@
 <?php
 //Author: Dylan van Schouwen
-// File name: Edit.php
-// Function: Edit data and update it
+//File name: Edit.php
+//Function: Edit data and update it
 include "connect.php";
 
 if(isset($_POST['save'])) {
