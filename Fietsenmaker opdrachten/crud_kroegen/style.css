@@ -1,0 +1,18 @@
+*{
+    text-decoration: none;
+    color:black;
+}
+table {
+    border-collapse: collapse;
+    width: auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 8px;
+    background-color:aquamarine;
+}
+
+form {
+    margin-bottom: 20px;
+}

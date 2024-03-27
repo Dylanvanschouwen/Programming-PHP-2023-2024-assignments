@@ -1,5 +1,5 @@
 <?php
-// auteur: Dylan van Schouwen
+// Author: Dylan van schouwen
 // functie: algemene functies tbv hergebruik
 
 include_once "config.php";
@@ -43,24 +43,24 @@ include_once "config.php";
     return $result;
  }
 
- // selecteer de rij van de opgeven brouwcode uit de table brouwer
- function getBrouwer($brouwcode){
+ // selecteer de rij van de opgeven kroegcode uit de table kroegen
+ function getKroeg($kroegcode){
     // Connect database
     $conn = connectDb();
 
     // Select data uit de opgegeven table methode prepare
-    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE brouwcode = :brouwcode";
+    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE kroegcode = :kroegcode";
     $query = $conn->prepare($sql);
-    $query->execute([':brouwcode'=>$brouwcode]);
+    $query->execute([':kroegcode'=>$kroegcode]);
     $result = $query->fetch();
 
     return $result;
  }
 
 
- function ovzBrouwer(){
+ function ovzKroegen(){
 
-    // Haal alle brouwer record uit de tabel 
+    // Haal alle kroegen record uit de tabel 
     $result = getData(CRUD_TABLE);
     
     //print table
@@ -99,27 +99,27 @@ function printTable($result){
 }
 
 
-function crudBrouwer(){
+function crudKroegen(){
 
     // Menu-item   insert
     $txt = "
-    <h1>Crud Brouwer</h1>
+    <h1>Crud Kroegen</h1>
     <nav>
-		<a href='insert_brouwer.php'>Toevoegen nieuwe brouwer</a>
+		<a href='insert_kroeg.php'>Toevoegen nieuwe kroeg</a>
     </nav><br>";
     echo $txt;
 
-    // Haal alle brouwer record uit de tabel 
+    // Haal alle kroegen record uit de tabel 
     $result = getData(CRUD_TABLE);
 
     //print table
-    printCrudBrouwer($result);
+    printCrudKroeg($result);
     
  }
 
-// Function 'printCrudBrouwer' print een HTML-table met data uit $result 
+// Function 'printCrudKroeg' print een HTML-table met data uit $result 
 // en een wzg- en -verwijder-knop.
-function printCrudBrouwer($result){
+function printCrudKroeg($result){
     // Zet de hele table in een variable en print hem 1 keer 
     $table = "<table>";
 
@@ -146,13 +146,13 @@ function printCrudBrouwer($result){
         
         // Wijzig knopje
         $table .= "<td>
-            <form method='post' action='update_brouwer.php?brouwcode=$row[brouwcode]' >       
+            <form method='post' action='update_kroeg.php?kroegcode=$row[kroegcode]' >       
                 <button>Wzg</button>	 
             </form></td>";
 
         // Delete knopje
         $table .= "<td>
-            <form method='post' action='delete_brouwer.php?brouwcode=$row[brouwcode]' >       
+            <form method='post' action='delete_kroeg.php?kroegcode=$row[kroegcode]' >       
                 <button>Verwijder</button>	 
             </form></td>";
 
@@ -164,18 +164,18 @@ function printCrudBrouwer($result){
 }
 
 
-function updateBrouwer($row){
+function updateKroeg($row){
 
     // Maak database connectie
     $conn = connectDb();
 
     // Maak een query 
-    $sql = "UPDATE " . CRUD_TABLE . 
-    " SET
-        naam = :naam,
-        land = :land
-    WHERE 
-        brouwcode = :brouwcode
+    $sql = "UPDATE " . CRUD_TABLE .
+    " SET 
+        naam = :naam, 
+        adres = :adres, 
+        plaats = :plaats
+    WHERE kroegcode = :kroegcode
     ";
 
     // Prepare query
@@ -183,23 +183,24 @@ function updateBrouwer($row){
     // Uitvoeren
     $stmt->execute([
         ':naam'=>$row['naam'],
-        ':land'=>$row['land'],
-        ':brouwcode'=>$row['brouwcode']  // Add this line
+        ':adres'=>$row['adres'],
+        ':plaats'=>$row['plaats'],
+        ':kroegcode'=>$row['kroegcode']
     ]);
-    
+
     // test of database actie is gelukt
     $retVal = ($stmt->rowCount() == 1) ? true : false ;
     return $retVal;
 }
 
-function insertBrouwer($post){
+function insertKroeg($post){
     // Maak database connectie
     $conn = connectDb();
 
     // Maak een query 
     $sql = "
-        INSERT INTO " . CRUD_TABLE . " (naam, land)
-        VALUES (:naam, :land) 
+        INSERT INTO " . CRUD_TABLE . " (naam, adres, plaats)
+        VALUES (:naam, :adres, :plaats) 
     ";
 
     // Prepare query
@@ -207,7 +208,8 @@ function insertBrouwer($post){
     // Uitvoeren
     $stmt->execute([
         ':naam'=>$_POST['naam'],
-        ':land'=>$_POST['land']
+        ':adres'=>$_POST['adres'],
+        ':plaats'=>$_POST['plaats']
     ]);
 
     
@@ -216,24 +218,22 @@ function insertBrouwer($post){
     return $retVal;  
 }
 
-function deleteBrouwer($brouwcode){
+function deleteKroeg($kroegcode){
 
     // Connect database
     $conn = connectDb();
     
-    // controleer of de brouwcode bestaat in de tabel bier
-    
     // Maak een query 
     $sql = "
     DELETE FROM " . CRUD_TABLE . 
-    " WHERE brouwcode = :brouwcode";
+    " WHERE kroegcode = :kroegcode";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
 
     // Uitvoeren
     $stmt->execute([
-    ':brouwcode'=>$_GET['brouwcode']
+    ':kroegcode'=>$_GET['kroegcode']
     ]);
 
     // test of database actie is gelukt
