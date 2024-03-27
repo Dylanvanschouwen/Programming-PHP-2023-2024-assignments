@@ -1,18 +1,14 @@
-*{
-    text-decoration: none;
-    color:black;
-}
-table {
-    border-collapse: collapse;
-    width: auto;
+label{
+    display: inline-block;
+    background-color:#00ffff;
+    width: 10%;
 }
 
 table, th, td {
+    background-color: aquamarine;
     border: 1px solid black;
-    padding: 8px;
-    background-color:aquamarine;
 }
 
-form {
-    margin-bottom: 20px;
+th{
+    background-color: grey;    
 }
