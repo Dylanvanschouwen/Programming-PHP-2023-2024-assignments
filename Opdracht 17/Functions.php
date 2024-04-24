@@ -1,5 +1,6 @@
 <?php
-
+// Author: Dylan van Schouwen
+// functie: algemene functies tbv hergebruik
 include_once "config.php";
 
 function connectDb(){

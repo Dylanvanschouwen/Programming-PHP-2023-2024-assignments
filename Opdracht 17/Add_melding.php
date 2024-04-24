@@ -1,5 +1,6 @@
 <?php
-
+// Author: Dylan
+// Functie: Voeg melding toe
 include_once "functions.php";
 
 

@@ -1,11 +1,9 @@
 <?php
-    // functie: Programma CRUD brouwer
+    // functie: Programma CRUD Meldingen
     // auteur: Dylan van Schouwen   
 
-    // Initialisatie
     include 'functions.php';
-    
-    // Aanroep functie 
+     
     Crudmeldingen_Leerling();
 ?>
 
