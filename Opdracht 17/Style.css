@@ -1,0 +1,15 @@
+*{
+    text-decoration: none;
+    color:black;
+    margin:5px;
+}
+
+table, th, td {
+    
+    background-color: #b8b8b8;
+    border: 1px solid black;
+}
+
+th{
+    background-color: grey;    
+}
